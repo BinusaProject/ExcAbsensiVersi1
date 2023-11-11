@@ -35,6 +35,47 @@
                                 <!-- Add preview image if needed -->
                             </form>
                         </div>
+        <div class="flex flex-col lg:flex-row mx-auto max-w-7xl py-6 px-4 lg:px-0">
+    <!-- Profile Picture -->
+    <div class="lg:w-1/3 pr-4 mb-4 lg:mb-0">
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <div class="text-xl font-semibold mb-2">Profile Picture</div>
+            <div class="text-center">
+                <img class="w-32 h-32 rounded-full mx-auto mb-2" src="profile.jpg" alt="Profile Picture">
+                <p class="text-xs text-gray-500 mb-4">JPG or PNG no larger than 5 MB</p>
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <label for="image" class="block mb-1">Upload new image</label>
+                    <input type="file" name="image" id="image" accept="image/*"
+                        class="border rounded-md p-1">
+                    <!-- Add preview image if needed -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account Details -->
+    <div class="lg:w-2/3">
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <div class="text-xl font-semibold mb-4">Account Details</div>
+            <form action="#" method="post" enctype="multipart/form-data">
+                <div class="mb-4">
+                    <label for="username" class="block mb-1 text-sm">Username</label>
+                    <input type="text" class="border rounded-md w-full p-2"  id="username" name="username">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block mb-1 text-sm">Email address</label>
+                    <input type="text"  class="border rounded-md w-full p-2" id="email"
+                        name="email">
+                </div>
+                <div class="flex flex-col lg:flex-row lg:gap-4 mb-4">
+                    <div class="w-full lg:w-1/2 mb-4 lg:mb-0">
+                        <label for="firstName" class="block mb-1 text-sm">First name</label>
+                        <input type="text" class="border rounded-md w-full p-2"  id="firstName"
+                            name="firstName">
+                    </div>
+                    <div class="w-full lg:w-1/2">
+                        <label for="lastName" class="block mb-1 text-sm">Last name</label>
+                        <input type="text" class="border rounded-md w-full p-2" id="lastName" name="lastName">
                     </div>
                 </div>
 

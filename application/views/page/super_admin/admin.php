@@ -31,7 +31,8 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 
                         <!-- Tabel Head -->
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <thead
+                            class="text-center text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
                                     No
@@ -49,13 +50,13 @@
                                     Nama Belakang
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Organisasi
+                                    Aksi
                                 </th>
                             </tr>
                         </thead>
 
                         <!-- Tabel Body -->
-                        <tbody>
+                        <tbody class="text-center">
                             <?php
                             $no = 0;
                             foreach ($user as $row):
@@ -73,16 +74,11 @@
                                     <?php echo $row->username; ?>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <?php echo $row->nama_depan; ?>
+                                    <a type="button" href=""
+                                        class="text-white bg-indigo-500 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                    </a>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <?php echo $row->nama_belakang; ?>
-                                </td>
-                                <!-- <td class="px-6 py-4">
-                                    <?php foreach ($organisasi as $org): ?>
-                                    <?php echo $org->nama_organisasi; ?>
-                                    <?php endforeach; ?>
-                                </td> -->
                             </tr>
                             <?php
                             endforeach;
