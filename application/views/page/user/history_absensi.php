@@ -5,10 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Absensi App</title>
-    <link rel="icon" href="<?php echo base_url(
-        './src/assets/image/absensi.png'
-    ); ?>" type="image/gif">
+    <link rel="icon" href="<?php echo base_url('./src/assets/image/absensi.png'); ?>" type="image/gif">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+    // Define the disableButton function
+    function disableButton(button, jamMasuk) {
+        console.log("Button clicked");
+        button.disabled = true;
+
+        // Enable the button after 2000 milliseconds (2 seconds), adjust as needed
+        setTimeout(function() {
+            button.disabled = false;
+        }, 2000);
+
+        // Do something with the jamMasuk value if needed
+        console.log("Jam Masuk: " + jamMasuk);
+    }
+
+    // Attach click event listeners to the buttons
+    $(document).ready(function() {
+        $('.izinButton, .batalButton').click(function() {
+            // Pass both 'this' and the jam_masuk value to the function
+            disableButton(this, $(this).data('jam-masuk'));
+        });
+    });
+    </script>
 </head>
 
 <body>
@@ -90,48 +112,44 @@
                                 <td class="px-5 py-3">
                                     <div class="flex justify-center">
                                         <?php if ($row->keterangan_izin == '-') : ?>
-                                        <a type="button" href="<?= base_url(
-                                        'user/detail_absensi/' .
-                                            $row->id_absensi
-                                        ) ?>"
-                                            class="text-white bg-indigo-500 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 mx-1 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
+                                        <!-- Tombol Detail Absensi -->
+                                        <a type="button"
+                                            href="<?= base_url('user/detail_absensi/' . $row->id_absensi) ?>"
+                                            class="text-white bg-indigo-500 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 mx-1 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"
+                                            onclick="disableButton(this, '<?= $row->jam_masuk; ?>');">
                                             <i class="fa-solid fa-circle-info"></i>
                                         </a>
-                                        <a type="button" href="<?= base_url(
-                                        'user/izin_absen/' .
-                                            $row->id_absensi
-                                        ) ?>"
-                                            class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 mx-1 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
+                                        <!-- Tombol Izin Absen -->
+                                        <a type="button" href="<?= base_url('user/izin_absen/' . $row->id_absensi) ?>"
+                                            class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 mx-1 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800 izinButton"
+                                            data-jam-masuk="<?= $row->jam_masuk; ?>">
                                             <i class="fa-solid fa-user-plus"></i>
                                         </a>
-                                        <?php else: ?>
-                                        <a type="button" href="<?= base_url(
-                                        'user/detail_absensi/' .
-                                            $row->id_absensi
-                                        ) ?>"
-                                            class="text-white bg-indigo-500 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 mx-1 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
+                                        <?php else : ?>
+                                        <!-- Tombol Detail Absensi -->
+                                        <a type="button"
+                                            href="<?= base_url('user/detail_absensi/' . $row->id_absensi) ?>"
+                                            class="text-white bg-indigo-500 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 mx-1 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"
+                                            onclick="disableButton(this, '<?= $row->jam_masuk; ?>');">
                                             <i class="fa-solid fa-circle-info"></i>
                                         </a>
-                                        <a type="button" href="<?= base_url(
-                                        'user/izin_absen/' .
-                                            $row->id_absensi
-                                        ) ?>"
-                                            class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 mx-1 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
-                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        <!-- Tombol Izin Absen -->
+                                        <a type="button" href="<?= base_url('user/izin_absen/' . $row->id_absensi) ?>"
+                                            class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 mx-1 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800 izinButton"
+                                            data-jam-masuk="<?= $row->jam_masuk; ?>">
+                                            <i class="fa-solid fa-user-plus"></i>
                                         </a>
+                                        <!-- Tombol Batal Izin -->
                                         <a type="button" href="<?= base_url('user/batal_izin/' . $row->id_absensi) ?>"
-                                            class="text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 mx-1 py-2.5 mr-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 focus:outline-none dark:focus:ring-yellow-800"
-                                            id="batalButton<?= $row->id_absensi ?>"
-                                            onclick="showCancelConfirmation(this);">
+                                            class="text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 mx-1 py-2.5 mr-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 focus:outline-none dark:focus:ring-yellow-800 batalButton"
+                                            onclick="disableButton(this, '<?= $row->jam_masuk; ?>');">
                                             <i class="fa-solid fa-right-to-bracket"></i>
                                         </a>
                                         <?php endif; ?>
                                     </div>
                                 </td>
                             </tr>
-                            <?php
-                            endforeach;
-                            ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -156,7 +174,6 @@ Swal.fire({
 </script>
 <?php } ?>
 
-
 <?php if ($this->session->flashdata('berhasil_izin')) { ?>
 <script>
 Swal.fire({
@@ -168,7 +185,6 @@ Swal.fire({
 });
 </script>
 <?php } ?>
-
 
 <?php if ($this->session->flashdata('berhasil_cuti')) { ?>
 <script>
@@ -239,7 +255,8 @@ Swal.fire({
     showConfirmButton: false,
     timer: 1500
 });
-</script>
+
 <?php } ?>
+</script>
 
 </html>
